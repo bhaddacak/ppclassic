@@ -1,0 +1,7 @@
+build/
+dist/
+src/gvimrc
+src/tags
+*.zip
+*.sh
+*.properties

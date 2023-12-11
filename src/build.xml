@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="Pāli Platform Classic" basedir=".." default="help">
+
+<property name="product.name" value="PPClassic"/>
+<property name="module" value="paliplatform"/>
+<property name="src.dir" value="src"/>
+<property name="src.main.dir" value="${src.dir}/main"/>
+<property name="res.dir" value="resources"/>
+<property name="build.dir" value="${basedir}/build"/>
+<property name="dist.dir" value="${basedir}/dist/${product.name}"/>
+<property name="classes.dir" value="${build.dir}/classes"/>
+<property name="jar.dir" value="${build.dir}/jar"/>
+<property name="javadoc.dir" value="${build.dir}/javadoc"/>
+<property name="lib.dir" value="${dist.dir}/lib"/>
+<property name="main-class" value="paliplatform.PaliPlatform"/>
+
+<path id="classpath">
+	<fileset dir="${lib.dir}" includes="**/*.jar"/>
+	<pathelement path="${classes.dir}/main"/>
+</path>
+
+<target name="help" description="Display an instruction of the build script">
+	<echo>
+Project name: ${ant.project.name}
+Ant version: ${ant.version}
+Java version: ${ant.java.version}
+
+Instruction:
+   1. To build the whole thing, go to 'src' directory 
+      which contains build.xml (see also Item 3 below)
+      then type this command:
+         $ ant build
+      After this, the final output file, ${product.name}.jar,
+      will be created at build/jar. You have to copy it to
+      dist/${product.name} manually. For automatic replacing,
+      try this:
+         $ ant build-replace
+   2. To just compile the project, type this:
+         $ ant compile
+      To run the program
+      (after the compilation is done successfully),
+      type this:
+         $ ant run
+      To make the output jar, then, type this:
+         $ ant jar
+      To create the program's javadoc, type this:
+         $ ant javadoc
+      For more information about other specific tasks,
+      type this:
+         $ ant -p
+         OR
+         $ ant -projecthelp   
+   3. Before the compilation will succeed,
+      the file structure has to be arranged in this way (at least):
+
+	ROOT-DIR/ (You name it)
+	|--src/
+	|   |--main/
+	|   |   |--paliplatform/
+	|   |   |    |--*.java
+	|   |   |--module-info.java
+	|   |--resources/
+	|   |   |--fonts/
+	|   |   |--images/
+	|   |   |--js/
+	|   |   |--styles/
+	|   |   |--text/
+	|   |--build.xml
+	|   |--manifest.txt
+	|
+	|--dist/ (containing the final product)
+	|   |--${product.name}
+	|       |--data/
+	|       |--fonts/
+	|       |--lib/
+	|       |--util/
+	|       |--${product.name}.jar
+	|       |--some other files...
+	|
+	|--build/ (created and deleted in the process)
+	|   |--classes/
+	|   |--jar/
+	|   |--javadoc/
+	|   |...
+	</echo>
+</target>
+
+<target name="clean"  description="Delete the built directory">
+	<delete dir="${build.dir}"/>
+</target>
+
+<target name="lib.check">	
+	<available file="${lib.dir}" type="dir" property="lib.exists"/>
+</target>
+
+<target name="lib.error" depends="lib.check" unless="lib.exists">
+	<echo>
+The required libraries does not exist (Lucene, H2, etc).
+It has to be located at 'dist/${product.name}/lib.'
+See '$ ant help' for more information about the file structure.
+	</echo>
+</target>
+
+<target name="compile" depends="lib.check,lib.error" if="lib.exists" description="Compile the source code">
+	<mkdir dir="${classes.dir}/main"/>
+	<javac srcdir="${src.main.dir}" destdir="${classes.dir}/main" includeAntRuntime="false" modulepath="${lib.dir}" source="11" target="11">
+		<classpath refid="classpath"/>
+	</javac>
+</target>
+
+<target name="output.check">
+	<available file="${classes.dir}/main/${module}/PaliPlatform.class" type="file" property="output.exists"/>	
+</target>
+
+<target name="resources.copy">
+	<copy todir="${classes.dir}/main">
+		<fileset dir="${src.dir}" includes="${res.dir}/**"/>
+	</copy>
+</target>
+
+<target name="jar.copy">
+	<copy todir="${dist.dir}" file="${jar.dir}/${product.name}.jar"/>
+</target>
+
+<target name="jar" depends="output.check,resources.copy" if="output.exists" description="Generate the executable JAR">
+	<mkdir dir="${jar.dir}"/>
+	<jar destfile="${jar.dir}/${product.name}.jar" manifest="${src.dir}/manifest.txt">
+		<fileset dir="${classes.dir}/main"/>
+	</jar>
+</target>
+
+<target name="jar.and.copy" depends="jar,jar.copy" />
+
+<target name="run" depends="output.check,resources.copy" if="output.exists" description="Execute the output CLASSES">
+	<java module="${module}" classname="${main-class}" fork="true" failonerror="true">
+		<jvmarg value="-Xmn512M"/>
+		<jvmarg value="-Xms1G"/>
+		<jvmarg value="-Xmx2G"/>
+		<arg value="${dist.dir}/"/>
+		<modulepath>
+			<pathelement path="${classes.dir}/main"/>
+			<pathelement path="${lib.dir}"/>
+		</modulepath>
+	</java>
+</target>
+
+<target name="jar.check">
+	<available file="${jar.dir}/${product.name}.jar" property="jar.exists"/>
+</target>
+
+<target name="runjar" depends="jar.check" if="jar.exists" description="Execute the output JAR">
+	<java module="${module}" classname="${main-class}" fork="true" failonerror="true">
+		<jvmarg value="-Xmn512M"/>
+		<jvmarg value="-Xms1G"/>
+		<jvmarg value="-Xmx2G"/>
+		<arg value="${dist.dir}/"/>
+		<modulepath>
+			<pathelement path="${jar.dir}"/>
+			<pathelement path="${lib.dir}"/>
+		</modulepath>
+	</java>	
+</target>
+
+<target name="zip" description="Archive the source files with resources">
+	<zip destfile="${product.name}-src+res.zip">
+		<fileset dir="." includes="${src.main.dir}/**"/>
+		<fileset dir="." includes="${src.dir}/${res.dir}/**"/>
+		<fileset dir="." includes="${src.dir}/build.xml"/>
+		<fileset dir="." includes="${src.dir}/manifest.txt"/>
+	</zip>
+</target>
+
+<target name="javadoc" description="Generate the program's javadoc (with package access)">
+	<mkdir dir="${javadoc.dir}"/>
+	<javadoc destdir="${javadoc.dir}" sourcepath="${src.main.dir}" access="package">
+		<modulepath refid="classpath"/>
+	</javadoc>
+</target>
+
+<target name="javadoc-private" description="Generate the program's javadoc (with private access)">
+	<mkdir dir="${javadoc.dir}"/>
+	<javadoc destdir="${javadoc.dir}" sourcepath="${src.main.dir}" access="private">
+		<modulepath refid="classpath"/>
+	</javadoc>
+</target>
+
+<target name="build" depends="clean,compile,jar" description="Clean, compile, and jar"/>
+<target name="build-replace" depends="build,jar.copy" description="Build and replace the old jar"/>
+<target name="compile-run" depends="compile,run"/>
+<target name="clean-jar" depends="clean,jar"/>
+<target name="clean-run" depends="clean,run"/>
+
+</project>

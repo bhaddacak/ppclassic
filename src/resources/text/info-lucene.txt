@@ -1,0 +1,7 @@
+A guide to Lucene Finder
+	1. Before searching, the index has to be built first. Check the build options and press Build. Various text groups can be selected. Afterwards, the user can choose which index is used when searching.
+	2. If capitalized terms are kept, keep in mind that when those terms are searched, capitalized query terms have to be entered accordingly. Normally, we index only lowercase terms.
+	3. Including numbers when indexing makes searching paragraph numbers possible.
+	4. Normally, it is no need to include boldface text in the index, because the text itself is already a part of other fields. Only if the user really needs to search the boldface text, this option can be helpful.
+	5. Screening out short words, can reduce noise when searching. The options provide up to three characters long. For more than that, using stopwords is a typical practice.
+	6. The user can edit stopwords, by selecting the menu.

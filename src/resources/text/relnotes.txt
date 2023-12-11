@@ -1,0 +1,69 @@
+╭──────────╮
+│ Websites │
+╰──────────╯
+⊚ The author's base portal: https://bhaddacak.github.io
+⊚ Pāli Platform's webpage: https://bhaddacak.github.io/paliplatform
+⊚ Pāli Platform's manual: https://bhaddacak.github.io/ppmanual
+
+╭─────────╮
+│ Credits │
+╰─────────╯
+⊚ Chaṭṭha Saṅgāyana CD published by Vipassana Research Institute (VRI) via tipitaka.org
+⊚ Apache Lucene 9.3.0, Apache License 2.0
+⊚ H2 database engine (unmodified binary) 2.1.214 (https://h2database.com/), Mozilla Public License 2.0 or Eclipse Public License 1.0 (https://h2database.com/html/license.html)
+⊚ Jackson 2.13.3 (only jackson-core), Java JSON library (https://github.com/FasterXML/jackson), Apache License 2.0
+⊚ Icon images by Font Awesome 6 (https://fontawesome.com), Font Awesome Free License
+⊚ DejaVu fonts 2.37 (https://dejavu-fonts.github.io/)
+⊚ Times Ext Roman font, bundled in CST4 (tipitaka.org)
+⊚ Arundina Sans font (Thai) 2.05 (https://github.com/tlwg/fonts-arundina), Bitstream Vera Fonts Copyright 
+⊚ Noto fonts (https://github.com/notofonts/noto-fonts), SIL Open Font License 1.1
+  - Noto Serif Devanagari 2.001
+  - Noto Serif Sinhala 2.002
+  - Noto Serif Khmer 2.001
+  - Noto Sans Myanmar 2.001
+⊚ The JDK used is Azul Zulu11.58+17-CA (build 11.0.16+8-LTS) for Linux (i686), with JavaFX 18.0.2 (https://www.azul.com/downloads/?version=java-11-lts)
+⊚ Apache Ant 1.10.14 (https://ant.apache.org/)
+⊚ Launch4j 3.14, launcher for Windows (http://launch4j.sourceforge.net)
+⊚ Dictionaries incorporated into the program are:
+  - Concise Pāli-English Dictionary, A. P. Buddhadatta, available at https://www.budsas.org/ebud/dict-pe/index.htm
+  - Concise English-Pāli Dictionary, A. P. Buddhadatta, available at https://www.budsas.org/ebud/dict-ep/index.htm
+  - The Pali Text Society's Pali-English Dictionary, T. W. Rhys Davids and W. Stede, an online version at https://dsal.uchicago.edu/dictionaries/pali/
+  - Dictionary of Pāli Proper Names, Gunapala Piyasena Malalasekera, an online version at http://www.palikanon.com/english/pali_names/dic_idx.html
+⊚ Pāli roots are listed by Ven. U Silananda in Pali Roots in Saddanīti Dhātu-Mālā compared with Pāṇinīya-Dhātupāṭha, edited by U Nandisena, available at https://archive.org/details/ThePaliRootsInSaddaniti
+⊚ Explanations and the list of Pāli prosody come from Vuttodayamañjarī (Thai) by Gandhasārābhivaṃsa, printed by Mahachulalongkorn Buddhist University, Nakhon Pathom, Thailand (2001)
+
+╭────────────╮
+│ Change log │
+╰────────────╯
+2023, Dec 11
+⊚ Pāli Platform Classic 2.1 is released, GPL3 license applied
+⊚ Features added in Document Finder
+⊚ Conversion between ṃ and ṁ added in Text Editor
+⊚ Several improvements and bug-fixes
+
+2022, Nov 12
+⊚ Pāli Platform version 2 RC1 is released, newly written in most parts with Java 11 and JavaFX UI
+⊚ Pāli Platform version 1 is discontinued
+
+2020, Jan 18 - 2021, Nov 20
+⊚ Pāli Platform version 1, developed with Java 8 and Swing UI
+
+╭─────────╮
+│ License │
+╰─────────╯
+
+Copyright 2023-2024 Jakratep Rampungkit Bhaddācāro (J.R. Bhaddacak)
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or (at
+your option) any later version.
+
+This program is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see https://www.gnu.org/licenses/.
+

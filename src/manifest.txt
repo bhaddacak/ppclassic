@@ -1,0 +1,11 @@
+Main-Class: paliplatform.PaliPlatform
+Class-Path: 
+ lib/h2-2.1.214.jar 
+ lib/jackson-core-2.13.3.jar 
+ lib/lucene-analysis-common-9.3.0.jar 
+ lib/lucene-core-9.3.0.jar 
+ lib/lucene-highlighter-9.3.0.jar 
+ lib/lucene-memory-9.3.0.jar 
+ lib/lucene-queries-9.3.0.jar 
+ lib/lucene-queryparser-9.3.0.jar 
+ lib/lucene-sandbox-9.3.0.jar 

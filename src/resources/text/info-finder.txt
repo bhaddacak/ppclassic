@@ -1,0 +1,7 @@
+How to find a document
+	1. There are roughly two modes of finding: (1) search in document's information as shown in TOC tree, and (2) search in document's contents (full text search).
+	2. Document's information can be divided into three fields: text name, book name, and group name. The user has to choose the search target properly. In this mode, only an asterisk (*) can be used as a wildcard in any position, and the search is case-insensitive. The result of this is shown immediately.
+	3. In content search, a regular-expression pattern can be used as a search query. In this mode, all special characters are interpreted as regex meta-characters, and the user has to press Enter to submit the query. This search is case-sensitive, and at least three characters are allowed as a query. The last column of the result shows the number of instances found in each document.
+	4. To search a whole word in this mode, '\b' can be used to mark the word boundary, For example, "\bdhammā\b" matches "dhammā" not "xxxdhammāxxx". Remember that complex regex patterns take time to process.
+	5. The content search is brute and slow, and always finds in a fixed order, i.e., Vinaya, Suttanta, Abhidhamma, and Añña group respectively. For a more refined search, consider using Lucene Finder or Tokenizer.
+	6. To narrow down the source and speed up the search, the inclusion of text groups should be set appropriately.

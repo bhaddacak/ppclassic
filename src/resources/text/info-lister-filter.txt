@@ -1,0 +1,5 @@
+Term filtering guide
+	1. For the four modes of term filtering, see the help in Tokenizer.
+	2. In addition, the retrieved records can be grouped by starting and/or ending characters. This can give a statistical insight. Moreover, it can be helpful to find peculiar terms that possibly come from editorial errors.
+	3. In the grouping mentioned above, it operates on the retrieved records not directly from the database. So, the number of shown rows has to be chosen accordingly. Setting it to the maximum should cover the whole set of terms, but it takes time to process.
+	4. In the result of grouping, a hyphen (-) includes zero or any number of characters. So, '-ti' means 'ti' itself and everything ending with 'ti'.
