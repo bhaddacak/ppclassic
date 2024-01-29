@@ -6,7 +6,7 @@ A classic tool for Pāli studies.
 The essential development tools are only *JDK* (11 or newer), *JavaFX* and *Apache Ant*. You can use any IDE/editor to edit the files (but setting up a project in modern IDEs can use some effort). I mainly use Vim/Neovim with a little help from NetBeans for refactoring. If you use a Debian-based GNU/Linux, type this command to install the tools:
 
 ```
-$ sudo apt-get install openjdk-17-jdk openjfx ant
+$ sudo apt-get install openjdk-11-jdk openjfx ant
 ```
 
 Recently, I have changed my working environment to 32-bit Void Linux. There is no OpenJFX in its repository. So, I use a JDK with JavaFX included instead (Zulu in my case). Also, I use a separate Apache Ant. Once you do it likewise, you have to set JAVA\_HOME and ANT\_HOME and add it to the PATH. I add this to `.bash\_profile` in the following way (replace the directories with yours):

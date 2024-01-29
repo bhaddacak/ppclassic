@@ -136,6 +136,7 @@ public class ConjugationWin extends SingletonWindow {
 		attanopadaMenuItem.disableProperty().bind(deriVerbButton.selectedProperty());
 		attanopadaMenuItem.setOnAction(actionEvent -> showResult());
 		augmentMenuItem.disableProperty().bind(deriVerbButton.selectedProperty());
+		augmentMenuItem.setSelected(true);
 		augmentMenuItem.setOnAction(actionEvent -> {
 			if(experimentMenuItem.isSelected())
 				experiment();
@@ -427,6 +428,7 @@ public class ConjugationWin extends SingletonWindow {
 					paccList.add(deriPacc);
 				}
 			}
+			if (paccList.isEmpty()) return;
 			final PaliConjugation.DeriPaccaya selectedDeriPacc;
 			final Toggle tgl = paccOptGroup.getSelectedToggle();
 			if(tgl == null || tgl.getUserData() instanceof PaliConjugation.TenseMood) {
@@ -521,6 +523,7 @@ public class ConjugationWin extends SingletonWindow {
 			final Map<PaliConjugation.DeriPaccaya, List<String>> stemMap = currRoot.getDeriStemMap(currVoice);
 			if(stemMap == null) return;
 			final List<String> stemList = stemMap.get(currDeriPacc);
+			if(stemList.isEmpty()) return;
 			exportedResult.append(getExportedHeader());
 			exportedResult.append(currDeriPacc.getName()).append(" (").append(currDeriPacc.getPos()).append(")");
 			exportedResult.append(LINESEP);
